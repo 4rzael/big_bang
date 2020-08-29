@@ -89,17 +89,10 @@ export default class MainScene extends Phaser.Scene {
   create () {
     // const music = this.game.sound.add('music')
     // music.play({loop: true})
+    this.bg = this.physics.add.sprite(HALF, HALF,'background')
 
     this.map = new Array(27).fill(0).map(x => new Array(27).fill(0))
     this.init_map()
-    console.log(this.map)
-    // this.map_sprites = new Array(27).fill(0)
-    // .map((_x, x) => new Array(27).fill(0)
-    //   .map((_y, y) => {
-    //     return this.physics.add.sprite(x*32, y*32, 'empty')
-    //   })
-    // )
-    console.log('BEEEEEHH')
     
     this.keys = this.input.keyboard.addKeys({
       up: 'up',

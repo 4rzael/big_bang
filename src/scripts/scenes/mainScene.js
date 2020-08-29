@@ -4,7 +4,7 @@ import FpsText from '../objects/fpsText'
 const FULL = 864
 const HALF = FULL / 2
 
-const TICK_MS = 100
+const TICK_MS = 200
 const X = 0
 const Y = 1
 
@@ -43,6 +43,7 @@ export default class MainScene extends Phaser.Scene {
 
     draw_heart(3,3)
     draw_heart(15,21)
+    draw_heart(20,7)
 }
 
   evolve_map() {
@@ -78,7 +79,7 @@ export default class MainScene extends Phaser.Scene {
     this.map_sprites = this.map.map((line, x) => {
       return line.map((val, y) => {
         if (val) {
-          return this.physics.add.sprite(x*32, y*32, 'block')
+          return this.physics.add.sprite(x*32+16, y*32+16, 'block')
         } else {
           return null
           // return this.physics.add.sprite(x*32, y*32, 'empty')
@@ -87,8 +88,8 @@ export default class MainScene extends Phaser.Scene {
     })
   }
   create () {
-    // const music = this.game.sound.add('music')
-    // music.play({loop: true})
+    const music = this.game.sound.add('music')
+    music.play({loop: true})
     this.bg = this.physics.add.sprite(HALF, HALF,'background')
 
     this.map = new Array(27).fill(0).map(x => new Array(27).fill(0))
@@ -102,7 +103,7 @@ export default class MainScene extends Phaser.Scene {
     })
     
     this.player_pos = [13, 13]
-    this.player = this.physics.add.sprite(13*32,13*32,'player');
+    this.player = this.physics.add.sprite(13*32+16,13*32+16,'player');
     this.player.z = Math.pow(2, 53)    
     setInterval(() => {
       this.evolve_map()
@@ -135,6 +136,6 @@ export default class MainScene extends Phaser.Scene {
       if (this.player_pos[X] >= 26) this.player_pos[X] = 26
     }
 
-    this.player.setPosition(this.player_pos[X] * 32, this.player_pos[Y] * 32)
+    this.player.setPosition(this.player_pos[X] * 32 + 16, this.player_pos[Y] * 32 + 16)
   }
 }

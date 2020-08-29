@@ -41,7 +41,7 @@ export default class MainScene extends Phaser.Scene {
       this.map[x+3][y+4] = 1
     }
 
-    draw_heart(3,3)
+    draw_heart(5,5)
     draw_heart(15,21)
     draw_heart(20,7)
 }
